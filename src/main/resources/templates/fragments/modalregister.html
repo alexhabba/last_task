@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:fragment="modalRegister">
+    <div class="myModal">
+        <div class="modal fade" id="newAndEditUserModal" tabindex="-1" role="dialog"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 id="labelAddnewUserOrEditPage"></h3>
+                        <button type="button" class="close text-danger" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <!--                        <form action="/" id="formR">-->
+                        <div class="form-group" id="idInput">
+                            <label>ID</label>
+                            <input type="text" id="id" class="form-control"
+                                   placeholder="Enter ID">
+                        </div>
+                        <div class="form-group">
+                            <label>Firstname</label>
+                            <input type="text" id="firstname" class="form-control"
+                                   placeholder="Enter firstname">
+                        </div>
+                        <div class="form-group">
+                            <label>Lastname</label>
+                            <input id="lastname" type="text" class="form-control"
+                                   placeholder="Enter lasstname">
+                        </div>
+                        <div class="form-group">
+                            <label>Age</label>
+                            <input id="age" type="number" class="form-control"
+                                   placeholder="Enter age">
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input id="email" type="email" class="form-control"
+                                   placeholder="Enter email">
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input id="passwordModalWindow" type="password" class="form-control"
+                                   placeholder="Enter password">
+                        </div>
+                        <div class="form-group" id="formPasswordRepeat">
+                            <label>Repeat password</label>
+                            <input id="passwordRepeat" type="password"
+                                   class="form-control"
+                                   placeholder="Enter repeat password">
+                        </div>
+                        <div id="selectRole">
+                            <select size="2" class="custom-select" name="roleIds" id="addRoles"  multiple>
+                                <option  id="ADMIN" value="ADMIN">ADMIN</option>
+                                <option id="USER"  value="USER">USER</option>
+                            </select>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" id="closeModal" data-dismiss="modal">Close
+                            </button>
+                            <button type="button" class="btn btn-primary" id="buttonEditOrCreatNewUser"></button>
+                        </div>
+
+                        <!--                        </form>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
