@@ -6,6 +6,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+import web.model.Role;
 import web.model.User;
 import web.repository.RoleDao;
 import web.repository.UserDao;
@@ -13,13 +14,13 @@ import web.repository.UserDao;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import java.util.Collections;
 import java.util.List;
 
 @RestController
-public class AdminController {
+public class AdminRestController {
 
-    int count = 1;
 
     @Autowired
     private UserDao userDao;
@@ -31,7 +32,7 @@ public class AdminController {
     private PasswordEncoder passwordEncoder;
 
     @PostMapping
-    public ResponseEntity<User> saveUser(@RequestBody @Valid User user) {
+    public ResponseEntity<User> saveUser(@RequestBody @Valid @NotNull User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setRoles(Collections.singletonList(roleDao.getOne(2L)));
         userDao.save(user);
@@ -51,7 +52,12 @@ public class AdminController {
     }
 
     @PutMapping("/edit")
-    public ResponseEntity<User> editUser(@RequestBody @Valid User user) {
+    public ResponseEntity<User> editUser(@RequestBody @Valid User user, String role) {
+        List<Role> roles = role.equals("2")
+                ? List.of(roleDao.getOne(1L), roleDao.getOne(2L))
+                : role.equals("ADMIN") ? List.of(roleDao.getOne(1L))
+                :List.of(roleDao.getOne(2L));
+        user.setRoles(roles);
         userDao.save(user);
         return new ResponseEntity<>(HttpStatus.OK);
     }

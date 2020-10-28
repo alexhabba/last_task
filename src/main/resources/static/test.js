@@ -85,7 +85,8 @@ buttonEditOrCreatNewUser.on('click', () => {
     let age = $('#age').val();
     let email = $('#email').val();
     let password = $('#passwordModalWindow').val();
-    // let passwordRepeat = $('#passwordRepeat').val();
+    let roles = $('#addRoles').val();
+    let urlEdit = roles.length === 1 ? '/edit?role=' + roles[0] : '/edit?role=2';
 
     if (buttonEditOrCreatNewUser.html() === 'Delete User') {
         fetch('/delete/' + id, {
@@ -96,7 +97,7 @@ buttonEditOrCreatNewUser.on('click', () => {
     }
 
     if (buttonEditOrCreatNewUser.html() === 'Edit User') {
-        fetch('/edit', {
+        fetch(urlEdit, {
             method: 'PUT',
             headers: {
                 'Accept': 'application/json',
@@ -109,6 +110,7 @@ buttonEditOrCreatNewUser.on('click', () => {
                 age: age,
                 email: email,
                 password: password
+                // roles:[{role: 'ADMIN'}]
             })
         });
         console.log('PUT')

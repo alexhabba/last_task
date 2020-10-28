@@ -30,7 +30,6 @@ public class LoginController {
         User user = authentication == null ? null : (User) authentication.getPrincipal();
         if (user != null) {
             String roleUser = user.getRoles().stream().map(Role::getRole).collect(Collectors.joining(" "));
-            System.out.println(roleUser);
             Map<String, Object> map = new HashMap<>();
             map.put("users", userDao.findAll());
 //            map.put("users", userDao.findAll(PageRequest.of(page, 4)));
